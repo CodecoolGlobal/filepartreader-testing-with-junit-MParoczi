@@ -1,9 +1,6 @@
 package com.codecool.file_part_reader;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class FileWordAnalyzer {
     private FilePartReader reader;
@@ -32,5 +29,21 @@ public class FileWordAnalyzer {
             }
         }
         return result;
+    }
+
+    public List<String> getStringsWhichPalindromes () {
+        Set<String> content = new HashSet<>(this.getWordsOrderedAlphabetically());
+        Set<String> reversedWords = new HashSet<>();
+        Set<String> intersectSet = new HashSet<>(content);
+
+        for (String word : content) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(word);
+            stringBuilder = stringBuilder.reverse();
+            reversedWords.add(stringBuilder.toString());
+        }
+        intersectSet.retainAll(reversedWords);
+
+        return new ArrayList<>(intersectSet);
     }
 }
