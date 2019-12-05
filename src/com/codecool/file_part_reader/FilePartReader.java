@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class FilePartReader {
@@ -30,5 +33,18 @@ public class FilePartReader {
             e.printStackTrace();
         }
         return contentBuilder.toString();
+    }
+
+    public String readLines() {
+        String content = this.read();
+        List<String> lines = new ArrayList<>(Arrays.asList(content.split("\n")));
+        StringBuilder requiredContent = new StringBuilder();
+        int INDEX_CORRECTION = 1;
+
+        for (String line : lines.subList(this.fromLine - INDEX_CORRECTION, this.toLine - INDEX_CORRECTION)) {
+            requiredContent.append(line).append("\n");
+        }
+
+        return requiredContent.toString();
     }
 }
