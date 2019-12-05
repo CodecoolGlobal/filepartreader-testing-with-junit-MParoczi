@@ -1,5 +1,11 @@
 package com.codecool.file_part_reader;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
 public class FilePartReader {
     private String filePath;
     private int fromLine;
@@ -12,7 +18,13 @@ public class FilePartReader {
         this.toLine = toLine;
     }
 
-    public FilePartReader(String filePath, int fromLine, int toLine) {
-        this.setup(filePath, fromLine, toLine);
+    public String read() {
+        StringBuilder contentBuilder = new StringBuilder();
+        try (Stream<String> stream = Files.lines(Paths.get(this.filePath), StandardCharsets.UTF_8)) {
+            stream.forEach(s -> contentBuilder.append(s).append("\n"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contentBuilder.toString();
     }
 }
