@@ -10,4 +10,8 @@ public class FilePartReader {
         this.fromLine = fromLine;
         this.toLine = toLine;
     }
+
+    public FilePartReader(String filePath, int fromLine, int toLine) {
+        this.setup(filePath, fromLine, toLine);
+    }
 }
