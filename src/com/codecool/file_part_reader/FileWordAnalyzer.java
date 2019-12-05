@@ -12,7 +12,7 @@ public class FileWordAnalyzer {
         this.reader = reader;
     }
 
-    public List getWordsOrderedAlphabetically() {
+    public List<String> getWordsOrderedAlphabetically() {
         String content = reader.readLines();
 
         List<String> words = new ArrayList<>(Arrays.asList(content.replaceAll( "\\p{Punct}", "").toLowerCase().split("\\s+")));
@@ -20,5 +20,17 @@ public class FileWordAnalyzer {
         Collections.sort(words);
 
         return words;
+    }
+
+    public List<String> getWordsContainingSubstring (String subString ) {
+        List<String> content = this.getWordsOrderedAlphabetically();
+        List<String> result = new ArrayList<>();
+
+        for (String word : content) {
+            if (word.contains(subString)) {
+                result.add(word);
+            }
+        }
+        return result;
     }
 }
