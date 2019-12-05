@@ -11,5 +11,7 @@ public class Main {
         System.out.println(reader.read());
         System.out.println(reader.readLines());
         System.out.println(analyzer.getWordsOrderedAlphabetically().toString());
+        System.out.println(analyzer.getWordsContainingSubstring("app").toString());
+        System.out.println(analyzer.getStringsWhichPalindromes());
     }
 }
