@@ -6,6 +6,7 @@ public class FilePartReader {
     private int toLine;
 
     public void setup(String filePath, int fromLine, int toLine) {
+        if (fromLine < 1 || toLine < fromLine) throw new IllegalArgumentException("Invalid argument");
         this.filePath = filePath;
         this.fromLine = fromLine;
         this.toLine = toLine;
