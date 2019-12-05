@@ -41,10 +41,13 @@ public class FilePartReader {
         StringBuilder requiredContent = new StringBuilder();
         int INDEX_CORRECTION = 1;
 
-        for (String line : lines.subList(this.fromLine - INDEX_CORRECTION, this.toLine - INDEX_CORRECTION)) {
-            requiredContent.append(line).append("\n");
+        try {
+            for (String line : lines.subList(this.fromLine - INDEX_CORRECTION, this.toLine - INDEX_CORRECTION)) {
+                requiredContent.append(line).append("\n");
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.toString());
         }
-
         return requiredContent.toString();
     }
 }
