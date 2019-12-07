@@ -24,4 +24,12 @@ class FilePartReaderTest {
         FilePartReader reader = new FilePartReader(pathToFile, 1, 5);
         assertThrows(IllegalArgumentException.class, () -> reader.setup(pathToFile, 0, 1));
     }
+
+    @Test
+    @DisplayName("Test setup against invalid input (toLine is lenn than fromLine)")
+    @Tag("setup")
+    void testSetupToLineIsLessThanFromLine() {
+        FilePartReader reader = new FilePartReader(pathToFile, 1, 5);
+        assertThrows(IllegalArgumentException.class, () -> reader.setup(pathToFile, 5, 1));
+    }
 }
