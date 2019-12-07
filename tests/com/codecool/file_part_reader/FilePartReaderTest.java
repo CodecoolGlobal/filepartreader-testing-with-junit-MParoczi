@@ -26,10 +26,19 @@ class FilePartReaderTest {
     }
 
     @Test
-    @DisplayName("Test setup against invalid input (toLine is lenn than fromLine)")
+    @DisplayName("Test setup against invalid input (toLine is less than fromLine)")
     @Tag("setup")
     void testSetupToLineIsLessThanFromLine() {
         FilePartReader reader = new FilePartReader(pathToFile, 1, 5);
         assertThrows(IllegalArgumentException.class, () -> reader.setup(pathToFile, 5, 1));
+    }
+
+    @Test
+    @DisplayName("Test setup against invalid argument (display the right error message)")
+    @Tag("setup")
+    void testSetupIfDisplayTheRightErrorMessage() {
+        FilePartReader reader = new FilePartReader(pathToFile, 1, 5);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> reader.setup(pathToFile, 5, 1));
+        assertEquals("Invalid argument", exception.getMessage());
     }
 }
