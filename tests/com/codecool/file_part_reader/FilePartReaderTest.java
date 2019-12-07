@@ -16,4 +16,12 @@ class FilePartReaderTest {
         FilePartReader reader = new FilePartReader(pathToFile, 1, 5);
         assertNotNull(reader);
     }
+
+    @Test
+    @DisplayName("Test setup against invalid input (fromLine parameter less than 1")
+    @Tag("setup")
+    void testSetupFromLineIfLessThanOne() {
+        FilePartReader reader = new FilePartReader(pathToFile, 1, 5);
+        assertThrows(IllegalArgumentException.class, () -> reader.setup(pathToFile, 0, 1));
+    }
 }
