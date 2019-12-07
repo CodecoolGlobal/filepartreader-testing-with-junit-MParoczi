@@ -41,4 +41,12 @@ class FilePartReaderTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> reader.setup(pathToFile, 5, 1));
         assertEquals("Invalid argument", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("Test read method if it returns the right string")
+    @Tag("read")
+    void testReadIfReturnsTheRightString() {
+        FilePartReader reader = new FilePartReader(pathToFile, 1, 5);
+        assertEquals("Apple\nPear\nStrawberry\nBanana\nChocolate with white cream", reader.read());
+    }
 }
