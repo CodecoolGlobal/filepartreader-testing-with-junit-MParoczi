@@ -4,9 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.nio.file.NoSuchFileException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class FilePartReaderTest {
