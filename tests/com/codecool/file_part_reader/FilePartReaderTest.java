@@ -68,4 +68,12 @@ class FilePartReaderTest {
         FilePartReader reader = new FilePartReader(pathToFile, 1, 3);
         assertEquals("Apple\nPear\nStrawberry", reader.readLines());
     }
+
+    @Test
+    @DisplayName("Test readLines method if it throws the right exception at invalid argument")
+    @Tag("readLines")
+    void testReadLinesIfItReturnsException() {
+        FilePartReader reader = new FilePartReader(pathToFile, 1, 100);
+        assertThrows(IllegalArgumentException.class, reader::readLines);
+    }
 }
