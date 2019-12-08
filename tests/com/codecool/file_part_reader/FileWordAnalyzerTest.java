@@ -10,4 +10,11 @@ class FileWordAnalyzerTest {
     private String pathToFile = "C:\\Users\\Márk\\Desktop\\Iskola\\Codecool\\3. - OOP\\5TH SI Week\\FilePartReader testing with JUnit\\src\\com\\codecool\\file_part_reader\\input.txt";
     private FilePartReader reader = new FilePartReader(pathToFile, 1, 5);
 
+    @Test
+    @DisplayName("Test Analyzer constructor")
+    @Tag("constructor")
+    void testAnalyzerConstructor() {
+        FileWordAnalyzer analyzer = new FileWordAnalyzer(reader);
+        assertNotNull(analyzer);
+    }
 }
