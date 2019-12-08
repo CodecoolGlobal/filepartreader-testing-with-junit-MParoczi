@@ -60,4 +60,12 @@ class FilePartReaderTest {
         FilePartReader reader = new FilePartReader("Non existing file", 1, 5);
         assertEquals("There is no such file", reader.read());
     }
+
+    @Test
+    @DisplayName("Test readLines method if it returns the right string")
+    @Tag("readLines")
+    void testReadLinesIfItReturnsTheRightString() {
+        FilePartReader reader = new FilePartReader(pathToFile, 1, 3);
+        assertEquals("Apple\nPear\nStrawberry", reader.readLines());
+    }
 }
