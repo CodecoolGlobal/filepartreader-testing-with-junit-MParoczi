@@ -17,4 +17,12 @@ class FileWordAnalyzerTest {
         FileWordAnalyzer analyzer = new FileWordAnalyzer(reader);
         assertNotNull(analyzer);
     }
+
+    @Test
+    @DisplayName("Test alphabetical ordering")
+    @Tag("alphabetical")
+    void testAlphabeticalOrdering() {
+        FileWordAnalyzer analyzer = new FileWordAnalyzer(reader);
+        assertEquals("[apple, banana, chocolate, cream, pear, strawberry, white, with]", analyzer.getWordsOrderedAlphabetically().toString());
+    }
 }
