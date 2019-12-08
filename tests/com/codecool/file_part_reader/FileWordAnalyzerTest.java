@@ -25,4 +25,12 @@ class FileWordAnalyzerTest {
         FileWordAnalyzer analyzer = new FileWordAnalyzer(reader);
         assertEquals("[apple, banana, chocolate, cream, pear, strawberry, white, with]", analyzer.getWordsOrderedAlphabetically().toString());
     }
+
+    @Test
+    @DisplayName("Test substring searching method")
+    @Tag("substring")
+    void testSubstringSearching() {
+        FileWordAnalyzer analyzer = new FileWordAnalyzer(reader);
+        assertEquals("[apple, banana, chocolate, cream, pear, strawberry]", analyzer.getWordsContainingSubstring("a").toString());
+    }
 }
