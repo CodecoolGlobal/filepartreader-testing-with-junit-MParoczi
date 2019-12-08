@@ -33,4 +33,12 @@ class FileWordAnalyzerTest {
         FileWordAnalyzer analyzer = new FileWordAnalyzer(reader);
         assertEquals("[apple, banana, chocolate, cream, pear, strawberry]", analyzer.getWordsContainingSubstring("a").toString());
     }
+
+    @Test
+    @DisplayName("Test palindrome method")
+    @Tag("palindrome")
+    void testPalindromeSearching() {
+        FileWordAnalyzer analyzer = new FileWordAnalyzer(reader);
+        assertEquals("[]", analyzer.getStringsWhichPalindromes().toString());
+    }
 }
