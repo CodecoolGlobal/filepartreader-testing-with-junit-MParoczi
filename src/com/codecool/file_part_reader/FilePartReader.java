@@ -25,7 +25,7 @@ public class FilePartReader {
         this.toLine = toLine;
     }
 
-    public String read(){
+    public String read() {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines(Paths.get(this.filePath), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s).append("\n"));
@@ -42,10 +42,15 @@ public class FilePartReader {
         StringBuilder requiredContent = new StringBuilder();
         int INDEX_CORRECTION = 1;
 
-        for (String line : lines.subList(this.fromLine - INDEX_CORRECTION, this.toLine - INDEX_CORRECTION)) {
-            requiredContent.append(line).append("\n");
+        try {
+            for (String line : lines.subList(this.fromLine - INDEX_CORRECTION, this.toLine - INDEX_CORRECTION)) {
+                requiredContent.append(line).append("\n");
+            }
+            requiredContent.append(lines.get(this.toLine - INDEX_CORRECTION));
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("There are not that many line in the file");
         }
-        requiredContent.append(lines.get(this.toLine - INDEX_CORRECTION));
+
 
         return requiredContent.toString();
     }
