@@ -25,13 +25,13 @@ public class FilePartReader {
         this.toLine = toLine;
     }
 
-    public String read() {
+    public String read(){
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines(Paths.get(this.filePath), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s).append("\n"));
             contentBuilder.delete(contentBuilder.length() - 1, contentBuilder.length());
         } catch (IOException e) {
-            e.printStackTrace();
+            return "There is no such file";
         }
         return contentBuilder.toString();
     }

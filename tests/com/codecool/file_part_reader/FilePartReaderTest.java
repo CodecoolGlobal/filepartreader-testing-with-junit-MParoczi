@@ -4,6 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FilePartReaderTest {
@@ -48,5 +51,13 @@ class FilePartReaderTest {
     void testReadIfReturnsTheRightString() {
         FilePartReader reader = new FilePartReader(pathToFile, 1, 5);
         assertEquals("Apple\nPear\nStrawberry\nBanana\nChocolate with white cream", reader.read());
+    }
+
+    @Test
+    @DisplayName("Test read method if it throws NoSuchFileException in case of non existing file")
+    @Tag("read")
+    void testReadIfThrowsIOException() {
+        FilePartReader reader = new FilePartReader("Non existing file", 1, 5);
+        assertEquals("There is no such file", reader.read());
     }
 }
